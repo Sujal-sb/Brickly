@@ -46,6 +46,8 @@ export default function CreateListing() {
   const [loading, setLoading] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleImageSubmit = async () => {
     if (files.length > 0 && files.length + formData.imageUrls.length <= 6) {
       setUploading(true)
@@ -130,7 +132,7 @@ export default function CreateListing() {
         return setError("Discount price must be lower than regular price")
       setLoading(true)
       setError(false)
-      const res = await fetch("/api/listing/create", {
+      const res = await fetch(`${API_URL}/api/listing/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

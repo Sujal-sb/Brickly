@@ -32,6 +32,8 @@ export default function AdminDashboard() {
   const [requireApproval, setRequireApproval] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   
+  const API_URL = import.meta.env.VITE_API_URL;
+  
   // Check if user is admin, redirect if not
   useEffect(() => {
     if (!currentUser) {
@@ -61,7 +63,7 @@ export default function AdminDashboard() {
         endpoint += "?status=rejected"
       }
       
-      const res = await fetch(endpoint, {
+      const res = await fetch(`${API_URL}${endpoint}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -90,7 +92,7 @@ export default function AdminDashboard() {
       setLoading(true)
       setError(null)
       
-      const res = await fetch("/api/admin/users", {
+      const res = await fetch(`${API_URL}/api/admin/users`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -127,7 +129,7 @@ export default function AdminDashboard() {
     try {
       setLoading(true)
       
-      const res = await fetch("/api/admin/settings/approval", {
+      const res = await fetch(`${API_URL}/api/admin/settings/approval`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -156,7 +158,7 @@ export default function AdminDashboard() {
     try {
       setLoading(true)
       
-      let endpoint = "/api/admin/listings/" + listingId
+      let endpoint = `/api/admin/listings/${listingId}`
       let method = "PUT"
       let body = {}
       
@@ -167,7 +169,7 @@ export default function AdminDashboard() {
         method = "DELETE"
       }
       
-      const res = await fetch(endpoint, {
+      const res = await fetch(`${API_URL}${endpoint}`, {
         method,
         headers: {
           "Content-Type": "application/json",

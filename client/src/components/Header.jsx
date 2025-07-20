@@ -13,6 +13,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const navigate = useNavigate()
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -46,7 +47,7 @@ export default function Header() {
 
   const handleSignOut = async () => {
     try {
-      const res = await fetch("/api/auth/signout", {
+      const res = await fetch(`${API_URL}/api/auth/signout`, {
         method: "POST",
         credentials: "include",
       })

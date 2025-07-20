@@ -28,7 +28,8 @@ export default function HomePage() {
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
-        const res = await fetch("/api/listing/get?offer=true&limit=4")
+        const API_URL = import.meta.env.VITE_API_URL;
+        const res = await fetch(`${API_URL}/api/listing/get?offer=true&limit=4`)
         const data = await res.json()
         setOfferListings(data)
       } catch (error) {
@@ -38,7 +39,8 @@ export default function HomePage() {
 
     const fetchRentListings = async () => {
       try {
-        const res = await fetch("/api/listing/get?type=rent&limit=4")
+        const API_URL = import.meta.env.VITE_API_URL;
+        const res = await fetch(`${API_URL}/api/listing/get?type=rent&limit=4`)
         const data = await res.json()
         setRentListings(data)
       } catch (error) {
@@ -48,7 +50,8 @@ export default function HomePage() {
 
     const fetchSaleListings = async () => {
       try {
-        const res = await fetch("/api/listing/get?type=sale&limit=4")
+        const API_URL = import.meta.env.VITE_API_URL;
+        const res = await fetch(`${API_URL}/api/listing/get?type=sale&limit=4`)
         const data = await res.json()
         setSaleListings(data)
       } catch (error) {
